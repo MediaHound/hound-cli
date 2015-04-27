@@ -1,6 +1,6 @@
 {
   "name": "fmedia",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Command-line Find.Media",
   "keywords": [
     "media",
@@ -17,6 +17,7 @@
     "lodash.defaults": "^3.1.1",
     "open": "0.0.5",
     "prompt": "^0.2.14",
+    "version": "^0.1.2",
     "xmlhttprequest": "^1.7.0",
     "xmlhttprequest-cookie": "^0.9.2"
   },

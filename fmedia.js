@@ -64,10 +64,15 @@ var usage = function() {
   ui.printUsage();
 };
 
+var version = function() {
+  ui.printVersion();
+};
+
 module.exports = {
   configure: configure,
   query: query,
   showSourcesForMHObject: showSourcesForMHObject,
   didYouMean: didYouMean,
-  usage: usage
+  usage: usage,
+  version: version
 };

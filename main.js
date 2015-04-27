@@ -12,6 +12,9 @@ var main = function() {
     if (args.length === 0) {
       fmedia.usage();
     }
+    else if (query === '--version' || query === '-v') {
+      fmedia.version();
+    }
     else {
       fmedia.query(query, mediaType);
     }
