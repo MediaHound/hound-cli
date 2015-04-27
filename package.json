@@ -1,0 +1,28 @@
+{
+  "name": "fmedia",
+  "version": "0.1.0",
+  "description": "Command-line Find.Media",
+  "keywords": [
+    "media",
+    "search"
+  ],
+  "author": "Dustin Bachrach",
+  "license": "Apache",
+  "preferGlobal": true,
+  "bin": {
+    "fmedia": "main.js"
+  },
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "open": "0.0.5",
+    "prompt": "^0.2.14",
+    "xmlhttprequest": "^1.7.0",
+    "xmlhttprequest-cookie": "^0.9.2"
+  },
+  "devDependencies": {
+    "gulp": "=3.8.11",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jshint": "=1.8.4",
+    "jshint-stylish": "^1.0.1"
+  }
+}
