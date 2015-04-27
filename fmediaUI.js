@@ -35,7 +35,7 @@ var printVersion = function() {
     }
     else {
       console.log('fmedia version:', v);
-    };
+    }
   });
 };
 
