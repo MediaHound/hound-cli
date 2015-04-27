@@ -60,9 +60,14 @@ var didYouMean = function(query, mediaType) {
     });
 };
 
+var usage = function() {
+  ui.printUsage();
+};
+
 module.exports = {
   configure: configure,
   query: query,
   showSourcesForMHObject: showSourcesForMHObject,
-  didYouMean: didYouMean
+  didYouMean: didYouMean,
+  usage: usage
 };

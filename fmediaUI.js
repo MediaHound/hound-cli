@@ -1,6 +1,7 @@
 var chalk = require('chalk');
 var prompt = require('prompt');
 var open = require('open');
+var _defaults = require('lodash.defaults');
 
 var configureUI = function() {
   prompt.message = '?';
@@ -10,7 +11,7 @@ var configureUI = function() {
 var printMediaAvailable = function(media) {
   console.log(
     formattedMedia(media),
-    chalk.white('is avaialble on:')
+    chalk.white('is available on:')
   );
 };
 
@@ -21,23 +22,24 @@ var printQueryResultsFound = function(query) {
   );
 };
 
+var printUsage = function() {
+  console.log('usage: fmedia [search]');
+};
+
 var printChoices = function(choices, options) {
-  var printer;
-  if (options && options.formatter) {
-    printer = options.formatter;
-  }
-  else {
-    printer = function(option) {
+  options = _defaults({}, options, {
+    empty: 'Nothing',
+    formatter: function(option) {
       console.log(option);
-    };
-  }
+    }
+  });
 
   var optionNum = 1;
   if (choices.length > 0) {
     choices.forEach(function(option) {
       console.log(
         chalk.gray(optionNum + ')'),
-        printer(option)
+        options.formatter(option)
       );
       optionNum++;
     });
@@ -46,7 +48,7 @@ var printChoices = function(choices, options) {
     console.log(chalk.gray(options.empty));
   }
 
-  if (options && options.alternate) {
+  if (options.alternate) {
     console.log(chalk.gray('or'));
     console.log(
       chalk.gray(optionNum + ')'),
@@ -55,7 +57,7 @@ var printChoices = function(choices, options) {
     optionNum++;
   }
 
-  if (options && options.prompt) {
+  if (options.prompt) {
     var property = {
       name: 'number',
       message: options.prompt,
@@ -66,7 +68,7 @@ var printChoices = function(choices, options) {
     };
     prompt.get(property, function(err, result) {
       if (!err) {
-        if (options && options.alternate && (result.number == optionNum - 1)) {
+        if (options.alternate && (result.number == optionNum - 1)) {
           options.alternateSelected();
         }
         else {
@@ -97,6 +99,7 @@ module.exports = {
   configureUI: configureUI,
   printMediaAvailable: printMediaAvailable,
   printQueryResultsFound: printQueryResultsFound,
+  printUsage: printUsage,
   printChoices: printChoices,
   openUrl: openUrl,
   formattedMedia: formattedMedia,

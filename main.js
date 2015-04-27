@@ -9,7 +9,12 @@ var main = function() {
     var mediaType = 'movie';
     var query = args.join(' ');
 
-    fmedia.query(query, mediaType);
+    if (args.length === 0) {
+      fmedia.usage();
+    }
+    else {
+      fmedia.query(query, mediaType);
+    }
   });
 };
 
