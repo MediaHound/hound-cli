@@ -1,24 +1,31 @@
 #! /usr/bin/env node
 
+var program = require('commander');
+var version = require('version');
 var fmedia = require('./fmedia');
 
-var main = function() {
-  fmedia.configure().then(function() {
-    var args = process.argv.slice(2);
+version.fetch(function(error, v) {
+  if (error) {
+    console.error(error);
+    process.exit(1);
+  }
+  else {
+    program
+      .version(v)
+      .description('Search for movies and where to watch them')
+      .arguments('<query...>')
+      .action(function (queryParams) {
+        var mediaType = 'movie';
+        var query = queryParams.join(' ');
 
-    var mediaType = 'movie';
-    var query = args.join(' ');
+        fmedia.configure().then(function() {
+          fmedia.query(query, mediaType);
+        });
+      })
+      .parse(process.argv);
 
-    if (args.length === 0) {
-      fmedia.usage();
+    if (!program.args.length) {
+      program.help();
     }
-    else if (query === '--version' || query === '-v') {
-      fmedia.version();
-    }
-    else {
-      fmedia.query(query, mediaType);
-    }
-  });
-};
-
-main();
+  };
+});

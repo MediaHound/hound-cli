@@ -60,19 +60,9 @@ var didYouMean = function(query, mediaType) {
     });
 };
 
-var usage = function() {
-  ui.printUsage();
-};
-
-var version = function() {
-  ui.printVersion();
-};
-
 module.exports = {
   configure: configure,
   query: query,
   showSourcesForMHObject: showSourcesForMHObject,
-  didYouMean: didYouMean,
-  usage: usage,
-  version: version
+  didYouMean: didYouMean
 };

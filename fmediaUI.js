@@ -1,7 +1,6 @@
 var chalk = require('chalk');
 var prompt = require('prompt');
 var open = require('open');
-var version = require('version');
 var _defaults = require('lodash.defaults');
 
 var configureUI = function() {
@@ -21,22 +20,6 @@ var printQueryResultsFound = function(query) {
     chalk.white('Results for:'),
     chalk.red(query)
   );
-};
-
-var printUsage = function() {
-  console.log('usage: fmedia [search]');
-};
-
-var printVersion = function() {
-  version.fetch(function(error, v) {
-    if (error) {
-      console.error(error);
-      process.exit(1);
-    }
-    else {
-      console.log('fmedia version:', v);
-    }
-  });
 };
 
 var printChoices = function(choices, options) {
@@ -112,8 +95,6 @@ module.exports = {
   configureUI: configureUI,
   printMediaAvailable: printMediaAvailable,
   printQueryResultsFound: printQueryResultsFound,
-  printUsage: printUsage,
-  printVersion: printVersion,
   printChoices: printChoices,
   openUrl: openUrl,
   formattedMedia: formattedMedia,
