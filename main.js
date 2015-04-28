@@ -14,7 +14,7 @@ version.fetch(function(error, v) {
       .version(v)
       .description('Search for movies and where to watch them')
       .arguments('<query...>')
-      .action(function (queryParams) {
+      .action(function(queryParams) {
         var mediaType = 'movie';
         var query = queryParams.join(' ');
 
@@ -27,5 +27,5 @@ version.fetch(function(error, v) {
     if (!program.args.length) {
       program.help();
     }
-  };
+  }
 });

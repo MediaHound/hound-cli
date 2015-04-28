@@ -42,4 +42,83 @@ describe('fmedia model', function() {
         });
     });
   });
+
+  describe('the buttonsForSources() method', function() {
+    it('returns no buttons when sources is empty', function() {
+      expect(model.buttonsForSources([])).toEqual([]);
+    });
+
+    it('returns no button for a source that has no mediums', function() {
+      var sources = [
+        {
+          name: 'Netflix'
+        }
+      ];
+      expect(model.buttonsForSources(sources)).toEqual([]);
+    });
+
+    it('returns one button per source method-medium pair', function() {
+      var vuduSource = {
+        name: 'Vudu',
+        mediums: [
+          {
+            type: 'download',
+            methods: [
+              {
+                type: 'purchase',
+                formats: [
+                  {
+                    price: '5.99',
+                    launchInfo: {
+                      view: {
+                        http: 'http://vudu.com/1234'
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+      var nflixSource = {
+        name: 'Netflix',
+        mediums: [
+          {
+            type: 'stream',
+            methods: [
+              {
+                type: 'subscription',
+                formats: [
+                  {
+                    launchInfo: {
+                      view: {
+                        http: 'http://netflix.com/5678'
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      };
+      var sources = [
+        vuduSource,
+        nflixSource
+      ];
+      expect(model.buttonsForSources(sources)).toEqual([
+        {
+          source: vuduSource,
+          pitch: 'Buy from $5.99',
+          url: 'http://vudu.com/1234'
+        },
+        {
+          source: nflixSource,
+          pitch: 'Watch Now',
+          url: 'http://netflix.com/5678'
+        }
+      ]);
+    });
+  });
 });

@@ -1,3 +1,5 @@
+var filters = require('./filters');
+
 var chalk = require('chalk');
 var prompt = require('prompt');
 var open = require('open');
@@ -10,7 +12,7 @@ var configureUI = function() {
 
 var printMediaAvailable = function(media) {
   console.log(
-    formattedMedia(media),
+    filters.formattedMedia(media),
     chalk.white('is available on:')
   );
 };
@@ -79,24 +81,10 @@ var openUrl = function(url) {
   open(url);
 };
 
-var formattedMedia = function(media) {
-  return chalk.green(media.metadata.name) +
-    ' ' +
-    chalk.blue('(' + media.metadata.releaseDate.getFullYear() + ')');
-};
-
-var formattedButton = function(button) {
-  return chalk.red(button.source.name) +
-    ' ' +
-    chalk.white(button.pitch);
-};
-
 module.exports = {
   configureUI: configureUI,
   printMediaAvailable: printMediaAvailable,
   printQueryResultsFound: printQueryResultsFound,
   printChoices: printChoices,
-  openUrl: openUrl,
-  formattedMedia: formattedMedia,
-  formattedButton: formattedButton
+  openUrl: openUrl
 };

@@ -1,4 +1,5 @@
 var ui = require('./fmediaUI');
+var filters = require('./filters');
 var model = require('./model');
 
 var configure = function() {
@@ -23,7 +24,7 @@ var showSourcesForMHObject = function(obj, otherwise) {
     .then(function(buttons) {
       ui.printChoices(buttons, {
         formatter: function(option) {
-          return ui.formattedButton(option);
+          return filters.formattedButton(option);
         },
 
         prompt: 'Which source?',
@@ -47,7 +48,7 @@ var didYouMean = function(query, mediaType) {
     .then(function(results) {
       ui.printChoices(results, {
         formatter: function(option) {
-          return ui.formattedMedia(option);
+          return filters.formattedMedia(option);
         },
 
         prompt: 'Which movie?',
