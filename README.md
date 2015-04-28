@@ -4,11 +4,11 @@
 
 Authors: Dustin Bachrach
 
-###Prequisites
+### Prequisites
 
 * npm
 
-###Installation
+### Installation
 
 NOTE: If you do not have npm or gulp you will need to install them globally.
 
@@ -20,3 +20,7 @@ NOTE: If you do not have npm or gulp you will need to install them globally.
 1. Clone the repo into a local folder
 2. cd into project folder
 3. run `npm install`
+
+### Gulp Tasks
+
+Running `gulp` will lint, style-check, and run unit tests.

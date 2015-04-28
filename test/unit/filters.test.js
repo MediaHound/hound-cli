@@ -1,5 +1,6 @@
+var filters = require('../../lib/filters');
+
 var chalk = require('chalk');
-var filters = require('../filters');
 
 describe('fmedia filters', function() {
   beforeEach(function() {

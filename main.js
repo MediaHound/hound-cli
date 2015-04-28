@@ -2,7 +2,8 @@
 
 var program = require('commander');
 var version = require('version');
-var fmedia = require('./fmedia');
+
+var controller = require('./lib/controller');
 
 version.fetch(function(error, v) {
   if (error) {
@@ -18,8 +19,8 @@ version.fetch(function(error, v) {
         var mediaType = 'movie';
         var query = queryParams.join(' ');
 
-        fmedia.configure().then(function() {
-          fmedia.query(query, mediaType);
+        controller.configure().then(function() {
+          controller.query(query, mediaType);
         });
       })
       .parse(process.argv);

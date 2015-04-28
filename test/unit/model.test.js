@@ -1,4 +1,4 @@
-var model = require('../model');
+var model = require('../../lib/model');
 
 describe('fmedia model', function() {
   beforeEach(function(done) {
