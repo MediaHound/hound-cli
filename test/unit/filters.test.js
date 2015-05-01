@@ -23,6 +23,17 @@ describe('fmedia filters', function() {
     });
   });
 
+  describe('the formattedContributor() method', function() {
+    it('formats a contributo', function() {
+      var person = {
+        metadata: {
+          name: 'John Goodman'
+        }
+      };
+      expect(filters.formattedContributor(person)).toBe('John Goodman');
+    });
+  });
+
   describe('the formattedButton() method', function() {
     it('returns only one movie', function() {
       var button = {
