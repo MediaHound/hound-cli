@@ -1,6 +1,6 @@
 {
   "name": "fmedia",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Command-line Find.Media",
   "keywords": [
     "media",
@@ -13,6 +13,7 @@
     "fmedia": "fmedia.js"
   },
   "dependencies": {
+    "bluebird": "^2.9.25",
     "chalk": "^1.0.0",
     "commander": "^2.8.1",
     "lodash.defaults": "^3.1.1",

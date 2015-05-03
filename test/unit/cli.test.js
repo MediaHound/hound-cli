@@ -55,7 +55,7 @@ describe('the fmedia CLI', function() {
       nexpect
         .spawn('node ./fmedia.js --version', { stripColors: true })
         .run(function(err, stdout, exitcode) {
-          expect(stdout[0]).toBe('0.3.0');
+          expect(stdout[0]).toMatch(/\d\.\d\.\d/);
           expect(exitcode).toBe(0);
           done();
         });
