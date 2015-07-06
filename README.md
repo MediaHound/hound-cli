@@ -1,4 +1,4 @@
-# fmedia
+# hound-cli
 
 ## A command line utility to find where to watch a movie.
 

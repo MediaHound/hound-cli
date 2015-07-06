@@ -2,7 +2,7 @@ var filters = require('../../lib/filters');
 
 var chalk = require('chalk');
 
-describe('fmedia filters', function() {
+describe('hound filters', function() {
   beforeEach(function() {
     chalk.enabled = false;
   });

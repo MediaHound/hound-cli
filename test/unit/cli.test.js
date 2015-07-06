@@ -1,11 +1,11 @@
 var nexpect = require('nexpect');
 
-describe('the fmedia CLI', function() {
+describe('the hound CLI', function() {
 
   describe('searching for a movie', function() {
     it('shows the sources when searching for a one-word movie', function(done) {
       nexpect
-        .spawn('node ./fmedia.js gladiator', { stripColors: true })
+        .spawn('node ./hound.js gladiator', { stripColors: true })
         .sendEof()
         .run(function(err, stdout, exitcode) {
           expect(stdout[0]).toMatch(/.* \(.*\) is available on:/);
@@ -23,7 +23,7 @@ describe('the fmedia CLI', function() {
 
     it('shows the sources when searching for a multi-word movie', function(done) {
       nexpect
-        .spawn('node ./fmedia.js toy story', { stripColors: true })
+        .spawn('node ./hound.js toy story', { stripColors: true })
         .sendEof()
         .run(function(err, stdout, exitcode) {
           expect(stdout[0]).toMatch(/.* \(.*\) is available on:/);
@@ -43,7 +43,7 @@ describe('the fmedia CLI', function() {
   describe('the utility parameters', function() {
     it('exits with failure when passing --meets and --with at the same time', function(done) {
       nexpect
-        .spawn('node ./fmedia.js --with john --meets gladiator', { stripColors: true })
+        .spawn('node ./hound.js --with john --meets gladiator', { stripColors: true })
         .run(function(err, stdout, exitcode) {
           expect(stdout[0]).toBe('Invalid parameters: Cannot use --with and --meets at the same time.');
           expect(exitcode).toBe(1);
@@ -53,7 +53,7 @@ describe('the fmedia CLI', function() {
 
     it('prints version when passing --version', function(done) {
       nexpect
-        .spawn('node ./fmedia.js --version', { stripColors: true })
+        .spawn('node ./hound.js --version', { stripColors: true })
         .run(function(err, stdout, exitcode) {
           expect(stdout[0]).toMatch(/\d\.\d\.\d/);
           expect(exitcode).toBe(0);
@@ -63,9 +63,9 @@ describe('the fmedia CLI', function() {
 
     it('prints help when passing --help', function(done) {
       nexpect
-        .spawn('node ./fmedia.js --help', { stripColors: true })
+        .spawn('node ./hound.js --help', { stripColors: true })
         .run(function(err, stdout, exitcode) {
-          expect(stdout[0]).toMatch(/Usage: fmedia/);
+          expect(stdout[0]).toMatch(/Usage: hound/);
           expect(exitcode).toBe(0);
           done();
         });
@@ -73,9 +73,9 @@ describe('the fmedia CLI', function() {
 
     it('prints help when passing no parameters at all', function(done) {
       nexpect
-        .spawn('node ./fmedia.js', { stripColors: true })
+        .spawn('node ./hound.js', { stripColors: true })
         .run(function(err, stdout, exitcode) {
-          expect(stdout[0]).toMatch(/Usage: fmedia/);
+          expect(stdout[0]).toMatch(/Usage: hound/);
           expect(exitcode).toBe(0);
           done();
         });

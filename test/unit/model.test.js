@@ -1,6 +1,6 @@
 var model = require('../../lib/model');
 
-describe('fmedia model', function() {
+describe('hound model', function() {
   beforeEach(function(done) {
     model.configure()
       .then(function() {

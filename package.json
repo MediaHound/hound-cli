@@ -1,6 +1,6 @@
 {
-  "name": "fmedia",
-  "version": "0.3.4",
+  "name": "hound-cli",
+  "version": "0.3.5",
   "description": "Command-line Find.Media",
   "keywords": [
     "media",
@@ -10,7 +10,7 @@
   "license": "Apache",
   "preferGlobal": true,
   "bin": {
-    "fmedia": "fmedia.js"
+    "hound": "houndcli.js"
   },
   "dependencies": {
     "bluebird": "^2.9.25",
