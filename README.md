@@ -38,7 +38,7 @@ George Clooney has done:
 ...
 ```
 
-To find recommendations from two of your favorite movies (like [DateNight](https://datenight.media)):
+To find recommendations from two of your favorite movies (like [DateNight](http://datenight.media)):
 
 ```
 ➜ hound The Notebook --meets Gladiator
