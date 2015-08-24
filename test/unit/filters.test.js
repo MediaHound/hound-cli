@@ -39,7 +39,9 @@ describe('hound filters', function() {
       var button = {
         pitch: 'A Sample Pitch',
         source: {
-          name: 'A Source Name'
+          metadata: {
+            name: 'A Source Name'
+          }
         }
       };
       expect(filters.formattedButton(button)).toBe('A Source Name A Sample Pitch');

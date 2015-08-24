@@ -4,6 +4,7 @@ var program = require('commander');
 var version = require('program-version');
 
 var controller = require('./lib/controller');
+var MHSearch = require('houndjs').MHSearch;
 
 program
   .version(version('%(version)s'))
@@ -18,18 +19,18 @@ program
     }
 
     var query = queryParams.join(' ');
-    var mediaType = 'movie';
+    var scopes = [MHSearch.SCOPE_MOVIE];
 
     controller.configure().then(function() {
       if (program.meets) {
-        controller.thisMeetsThat(query, program.meets, 'movie');
+        controller.thisMeetsThat(query, program.meets, scopes);
       }
       else {
         if (program.with) {
-          controller.queryPerson(query, mediaType);
+          controller.queryPerson(query, scopes);
         }
         else {
-          controller.query(query, mediaType);
+          controller.query(query, scopes);
         }
       }
     });
