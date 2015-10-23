@@ -4,8 +4,6 @@
 
 For a web version of this (and more) check out [Find.Media](https://find.media).
 
-Authors: Dustin Bachrach
-
 ### Prequisites
 
 * npm
@@ -38,7 +36,7 @@ George Clooney has done:
 ...
 ```
 
-To find recommendations from two of your favorite movies (like [DateNight](http://datenight.media)):
+To find recommendations from two of your favorite movies (like [Date Night](http://datenightmovies.com)):
 
 ```
 ➜ hound The Notebook --meets Gladiator
