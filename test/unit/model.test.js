@@ -1,4 +1,5 @@
 var model = require('../../lib/model');
+var MHSearch = require('houndjs').MHSearch;
 
 describe('hound model', function() {
   beforeEach(function(done) {
@@ -10,7 +11,7 @@ describe('hound model', function() {
 
   describe('the search() method', function() {
     it('returns 10 movies', function(done) {
-      model.search('toy story', 'movie')
+      model.search('toy', [MHSearch.SCOPE_MOVIE])
         .then(function(res) {
           expect(res.length).toBe(10);
           res.forEach(function(movie) {
@@ -24,7 +25,7 @@ describe('hound model', function() {
 
   describe('the luckySearch() method', function() {
     it('returns only one movie', function(done) {
-      model.luckySearch('toy story', 'movie')
+      model.luckySearch('toy story', [MHSearch.SCOPE_MOVIE])
         .then(function(res) {
           expect(res.className).toBe('MHMovie');
           done();
@@ -45,76 +46,101 @@ describe('hound model', function() {
 
   describe('the buttonsForSources() method', function() {
     it('returns no buttons when sources is empty', function() {
-      expect(model.buttonsForSources([])).toEqual([]);
+      expect(model.buttonsForSources({ content: [] })).toEqual([]);
     });
 
     it('returns no button for a source that has no mediums', function() {
-      var sources = [
-        {
-          name: 'Netflix'
-        }
-      ];
+      var sources = {
+        content: [
+          {
+            object: {
+              metadata: {
+                name: 'Netflix'
+              }
+            },
+            context: {
+
+            }
+          }
+        ]
+      };
       expect(model.buttonsForSources(sources)).toEqual([]);
     });
 
     it('returns one button per source method-medium pair', function() {
-      var vuduSource = {
-        name: 'Vudu',
-        mediums: [
-          {
-            type: 'download',
-            methods: [
-              {
-                type: 'purchase',
-                formats: [
-                  {
-                    price: '5.99',
-                    launchInfo: {
-                      view: {
-                        http: 'http://vudu.com/1234'
+      var vuduObject = {
+        metadata: {
+          name: 'Vudu'
+        }
+      };
+      var vuduPair = {
+        object: vuduObject,
+        context: {
+          mediums: [
+            {
+              type: 'download',
+              methods: [
+                {
+                  type: 'purchase',
+                  formats: [
+                    {
+                      price: '5.99',
+                      launchInfo: {
+                        view: {
+                          http: 'http://vudu.com/1234'
+                        }
                       }
                     }
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       };
-      var nflixSource = {
-        name: 'Netflix',
-        mediums: [
-          {
-            type: 'stream',
-            methods: [
-              {
-                type: 'subscription',
-                formats: [
-                  {
-                    launchInfo: {
-                      view: {
-                        http: 'http://netflix.com/5678'
+      var nflixObject = {
+        metadata: {
+          name: 'Netflix'
+        }
+      };
+      var nflixPair = {
+        object: nflixObject,
+        context: {
+          mediums: [
+            {
+              type: 'stream',
+              methods: [
+                {
+                  type: 'subscription',
+                  formats: [
+                    {
+                      launchInfo: {
+                        view: {
+                          http: 'http://netflix.com/5678'
+                        }
                       }
                     }
-                  }
-                ]
-              }
-            ]
-          }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      };
+      var sources = {
+        content: [
+          vuduPair,
+          nflixPair
         ]
       };
-      var sources = [
-        vuduSource,
-        nflixSource
-      ];
       expect(model.buttonsForSources(sources)).toEqual([
         {
-          source: vuduSource,
+          source: vuduObject,
           pitch: 'Buy from $5.99',
           url: 'http://vudu.com/1234'
         },
         {
-          source: nflixSource,
+          source: nflixObject,
           pitch: 'Watch Now',
           url: 'http://netflix.com/5678'
         }

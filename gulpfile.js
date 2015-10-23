@@ -8,8 +8,7 @@ var paths = {
   // All javascript source files
   src: [
     './**/*.js',
-    '!node_modules/**/*.js',
-    '!ext/**/*.js'
+    '!node_modules/**/*.js'
   ],
   test: {
     // All unit test files

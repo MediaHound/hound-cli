@@ -1,16 +1,22 @@
 {
   "name": "hound-cli",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Command-line Find.Media",
   "keywords": [
     "media",
-    "search"
+    "search",
+    "movies",
+    "entertainment"
   ],
-  "author": "Dustin Bachrach",
-  "license": "Apache",
+  "author": "MediaHound",
+  "license": "Apache-2.0",
   "preferGlobal": true,
   "bin": {
     "hound": "houndcli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MediaHound/hound-cli.git"
   },
   "dependencies": {
     "bluebird": "^2.9.25",
@@ -20,7 +26,7 @@
     "open": "0.0.5",
     "program-version": "^0.4.0",
     "prompt": "^0.2.14",
-    "houndjs": "0.1.2"
+    "houndjs": "0.3.0"
   },
   "devDependencies": {
     "gulp": "=3.8.11",
