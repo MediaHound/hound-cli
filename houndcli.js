@@ -21,19 +21,23 @@ program
     var query = queryParams.join(' ');
     var scopes = [MHSearch.SCOPE_MOVIE];
 
-    controller.configure().then(function() {
-      if (program.meets) {
-        controller.thisMeetsThat(query, program.meets, scopes);
-      }
-      else {
-        if (program.with) {
-          controller.queryPerson(query, scopes);
+    controller.configure()
+      .then(function() {
+        if (program.meets) {
+          controller.thisMeetsThat(query, program.meets, scopes);
         }
         else {
-          controller.query(query, scopes);
+          if (program.with) {
+            controller.queryPerson(query, scopes);
+          }
+          else {
+            controller.query(query, scopes);
+          }
         }
-      }
-    });
+      })
+      .catch(function(err) {
+        console.log('hound-cli: failed connection');
+      });
   })
   .parse(process.argv);
 
