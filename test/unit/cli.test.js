@@ -1,3 +1,6 @@
+require('isomorphic-fetch');
+require('babel-polyfill');
+
 var nexpect = require('nexpect');
 
 describe('the hound CLI', function() {

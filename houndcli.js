@@ -1,10 +1,12 @@
 #! /usr/bin/env node
 
+require('isomorphic-fetch');
+require('babel-polyfill');
+
 var program = require('commander');
 var version = require('program-version');
 
 var controller = require('./lib/controller');
-var MHSearch = require('houndjs').MHSearch;
 
 program
   .version(version('%(version)s'))
@@ -19,7 +21,7 @@ program
     }
 
     var query = queryParams.join(' ');
-    var scopes = [MHSearch.SCOPE_MOVIE];
+    var scopes = ['movie'];
 
     controller.configure()
       .then(function() {

@@ -1,6 +1,6 @@
 {
   "name": "hound-cli",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Command-line Find.Media",
   "keywords": [
     "media",
@@ -19,14 +19,16 @@
     "url": "https://github.com/MediaHound/hound-cli.git"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "bluebird": "^2.9.25",
     "chalk": "^1.0.0",
     "commander": "^2.8.1",
+    "houndjs": "^0.7.0",
+    "isomorphic-fetch": "^2.2.1",
     "lodash.defaults": "^3.1.1",
     "open": "0.0.5",
     "program-version": "^0.4.0",
-    "prompt": "^0.2.14",
-    "houndjs": "^0.5.5"
+    "prompt": "^0.2.14"
   },
   "devDependencies": {
     "gulp": "=3.8.11",

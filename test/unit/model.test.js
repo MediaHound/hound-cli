@@ -1,5 +1,7 @@
+require('isomorphic-fetch');
+require('babel-polyfill');
+
 var model = require('../../lib/model');
-var MHSearch = require('houndjs').MHSearch;
 
 describe('hound model', function() {
   beforeEach(function(done) {
@@ -11,11 +13,11 @@ describe('hound model', function() {
 
   describe('the search() method', function() {
     it('returns 10 movies', function(done) {
-      model.search('toy', [MHSearch.SCOPE_MOVIE])
+      model.search('toy', ['movie'])
         .then(function(res) {
           expect(res.length).toBe(10);
           res.forEach(function(movie) {
-            expect(movie.className).toBe('MHMovie');
+            expect(movie.mhid.slice(0, 5)).toBe('mhmov');
           });
 
           done();
@@ -25,9 +27,9 @@ describe('hound model', function() {
 
   describe('the luckySearch() method', function() {
     it('returns only one movie', function(done) {
-      model.luckySearch('toy story', [MHSearch.SCOPE_MOVIE])
+      model.luckySearch('toy story', ['movie'])
         .then(function(res) {
-          expect(res.className).toBe('MHMovie');
+          expect(res.mhid.slice(0, 5)).toBe('mhmov');
           done();
         });
     });
@@ -37,7 +39,7 @@ describe('hound model', function() {
         .then(function(luckyRes) {
           model.search('toy story', 'movie')
             .then(function(searchRes) {
-              expect(luckyRes.metadata.mhid).toBe(searchRes[0].metadata.mhid);
+              expect(luckyRes.mhid).toBe(searchRes[0].mhid);
               done();
             });
         });
@@ -54,9 +56,7 @@ describe('hound model', function() {
         content: [
           {
             object: {
-              metadata: {
-                name: 'Netflix'
-              }
+              name: 'Netflix'
             },
             context: {
 
@@ -69,9 +69,7 @@ describe('hound model', function() {
 
     it('returns one button per source method-medium pair', function() {
       var vuduObject = {
-        metadata: {
-          name: 'Vudu'
-        }
+        name: 'Vudu'
       };
       var vuduPair = {
         object: vuduObject,
@@ -99,9 +97,7 @@ describe('hound model', function() {
         }
       };
       var nflixObject = {
-        metadata: {
-          name: 'Netflix'
-        }
+        name: 'Netflix'
       };
       var nflixPair = {
         object: nflixObject,
